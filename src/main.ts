@@ -3,7 +3,16 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const logLevels = (process.env.LOG_LEVEL?.split(',') as any) || [
+    'log',
+    'error',
+    'warn',
+    'debug',
+    'verbose',
+  ];
+  const app = await NestFactory.create(AppModule, {
+    logger: logLevels,
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Threat Insight API')
