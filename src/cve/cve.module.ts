@@ -10,6 +10,8 @@ import { CveWeaknessEntity } from './entities/cve-weakness.entity';
 import { CveService } from './cve.service';
 import { CveSchedulerService } from './cve-scheduler.service';
 import { NvdService } from './nvd.service';
+import { CveNormalizationService } from './normalization/cve-normalization.service';
+import { CveNormalizationController } from './cve-normalization.controller';
 import { ThreatSourceFetchStateEntity } from 'src/common/entities/threat-source-fetch-state.entity';
 
 @Module({
@@ -25,7 +27,8 @@ import { ThreatSourceFetchStateEntity } from 'src/common/entities/threat-source-
     ]),
     HttpModule,
   ],
-  providers: [CveService, CveSchedulerService, NvdService],
-  exports: [TypeOrmModule, CveService, NvdService],
+  controllers: [CveNormalizationController],
+  providers: [CveService, CveSchedulerService, NvdService, CveNormalizationService],
+  exports: [TypeOrmModule, CveService, NvdService, CveNormalizationService],
 })
 export class CveModule {}
