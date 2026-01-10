@@ -13,6 +13,7 @@ import { NvdService } from './nvd.service';
 import { CveNormalizationService } from './normalization/cve-normalization.service';
 import { CveNormalizationController } from './cve-normalization.controller';
 import { ThreatSourceFetchStateEntity } from 'src/common/entities/threat-source-fetch-state.entity';
+import { NormalizationStateEntity } from 'src/common/entities/normalization-state.entity';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ThreatSourceFetchStateEntity } from 'src/common/entities/threat-source-
       CveReferenceEntity,
       CveWeaknessEntity,
       ThreatSourceFetchStateEntity,
+      NormalizationStateEntity,
     ]),
     HttpModule,
   ],

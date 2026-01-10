@@ -22,6 +22,7 @@ CREATE TABLE public.cve_canonical (
 	vuln_status varchar(30) NULL,
 	source_identifier text NULL,
 	normalized_at timestamptz NOT NULL DEFAULT now(),
+	normalizer_version varchar(20) NULL,
 	CONSTRAINT cve_canonical_pkey PRIMARY KEY (cve_id)
 );
 
