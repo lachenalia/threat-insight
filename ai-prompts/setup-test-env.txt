@@ -1,0 +1,16 @@
+Task:
+Write unit tests for src/cve/normalization/cve-normalization.service.ts.
+
+Constraints:
+- Use Jest
+- Mock all external dependencies
+- Do not modify the service implementation
+- Follow existing project conventions
+
+Success Criteria:
+- Tests compile
+- No TypeScript errors
+- No runtime import errors
+
+Output:
+Provide unified diff only.
