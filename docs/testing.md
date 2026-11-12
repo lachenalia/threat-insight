@@ -5,6 +5,7 @@ Install dependencies and run the unit tests and build:
 ```sh
 npm ci
 npm test -- --runInBand
+npm run test:e2e -- --runInBand
 npm run build
 ```
 
@@ -40,6 +41,14 @@ A parsing error now fails the current batch and marks the run as failed.
 Previously committed batches remain saved; fix the offending raw data or
 normalizer and rerun incremental normalization to resume pending work.
 
-The original `test:e2e` suite imports the full application and can trigger
-startup collection. It is separate from this isolated integration suite and
-should only run with a disposable application database and intentional NVD access.
+The HTTP `test:e2e` suite now loads the controllers, validation pipe and real
+administrative guard with a stub normalization service. It requires neither a
+DB nor NVD access and checks 400/401/409/503 responses and valid requests.
+
+Additional integration cases cover missing CVSS/metadata cleanup, late-arriving
+historical revisions, combining year/date filters, invalid payload identity,
+failed-window replay, unchanged query end times, 120-day window splitting,
+unexpectedly empty pages, and cross-client PostgreSQL advisory locking.
+
+NVD request tests use fake timers to verify bounded retries, request timeouts,
+rate spacing, Retry-After handling and sanitized errors without live requests.
