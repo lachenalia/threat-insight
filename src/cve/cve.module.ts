@@ -1,3 +1,5 @@
+import { DatabaseJobLockService } from '../common/services/database-job-lock.service';
+import { AdminApiKeyGuard } from '../common/guards/admin-api-key.guard';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpModule } from '@nestjs/axios';
@@ -30,7 +32,14 @@ import { NormalizationStateEntity } from 'src/common/entities/normalization-stat
     HttpModule,
   ],
   controllers: [CveNormalizationController],
-  providers: [CveService, CveSchedulerService, NvdService, CveNormalizationService],
+  providers: [
+    CveService,
+    CveSchedulerService,
+    NvdService,
+    CveNormalizationService,
+    DatabaseJobLockService,
+    AdminApiKeyGuard,
+  ],
   exports: [TypeOrmModule, CveService, NvdService, CveNormalizationService],
 })
 export class CveModule {}
